@@ -1,0 +1,55 @@
+
+*{
+    font-family: Poppins;
+}
+
+body{
+    background: linear-gradient(180deg, #7C8FDB 11.72%, #748AD6 75.34%);
+    height: 100vh;
+}
+
+
+
+.tpage-head h1{
+    font-size: 50px;
+    color:#091130;
+}
+
+.amount-input,.category-input{
+    background-color: #131D46;
+
+}
+.amount-input input,.category-input input{
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    color: white;
+}
+.amount-input input::placeholder,.category-input input::placeholder{
+    color:rgb(182, 182, 182);
+}
+.amount-input input:focus,.category-input input:focus{
+    outline:2px solid rgb(8, 102, 196);
+    
+}
+
+.category h4{
+    color:#091130;
+}
+
+.add-button button{
+    background-color: #006303;
+    transition: background-color .6s;
+   /*  outline: 2px solid white; */
+    border: none;
+    
+}
+/* .add-button button{
+    transition: color .6s;
+} */
+.add-button button:hover{
+    background-color: #049109;
+    /* outline: 2px solid white; */
+    
+}
