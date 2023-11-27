@@ -31,7 +31,7 @@ function Footer() {
       <h4 className='mb-3 '>contact us</h4>
       <div className='d-flex mb-3'>
         <input type="text" className='form-control' placeholder='Enter your Email' />
-        <button className='btn btn-warning ms-2'>subscribe</button>
+        <button className='btn btn-light text-dark ms-2'>Submit</button>
       </div>
 
       <div className='foot-icons d-flex justify-content-evenly align-item-center'>
