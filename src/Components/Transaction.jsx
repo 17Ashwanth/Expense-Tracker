@@ -28,7 +28,7 @@ function Transaction() {
                 </div>
               </div>
               <div className="add-button mt-5 text-center">
-                <button className='btn text-light fw-bold fs-5 rounded-4 w-25'>ADD</button>
+                <button className='btn text-light fw-bold fs-5 rounded-4 w-100'>ADD</button>
               </div>
             </div>  
         </div>

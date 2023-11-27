@@ -1,8 +1,9 @@
 import React from 'react'
+import '../index.css'
 
 function Header() {
   return (
-    <div>
+    <div className='header-body'>
         
     </div>
   )
