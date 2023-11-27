@@ -8,7 +8,7 @@ function Footer() {
     <div className='d-flex justify-content-evenly align-items-center w-100'>
     <div className="website " style={{width:"400px"}}>
     <h4 class='mb-3 fw-semibold'>
-    <img style={{width:'50px',marginRight:'20px'}} src="https://cdn-icons-png.flaticon.com/128/781/781831.png" alt="" />   Expence Tracker
+    <img style={{width:'50px',marginRight:'20px'}} src="https://cdn-icons-png.flaticon.com/128/781/781831.png" alt="" /> Spend Wise Hub
     </h4>
     <h6 className='text-light '>Expense trackers can be in the form of mobile apps, software programs, spreadsheets, or physical notebooks. They typically allow users to input various expenses, such as bills, groceries, transportation, entertainment, and more..</h6>
     </div>
