@@ -34,8 +34,9 @@ body{
     
 }
 
-.category h4{
+.category p{
     color:#091130;
+    margin:0;
 }
 
 .add-button button{
