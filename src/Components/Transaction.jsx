@@ -23,7 +23,7 @@ function Transaction({credit}) {
   const handleAddDebit = async ()=>{
     const {debitAmount,debitCategory}=debitTransactions
     if(!debitAmount || !debitCategory){
-      alert('Please fill all the fields!')
+      alert('Please fill all the fields!') 
     }
     else{
       const response = await addDebitTransaction(debitTransactions)
