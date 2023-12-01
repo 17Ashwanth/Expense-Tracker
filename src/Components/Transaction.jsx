@@ -1,13 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../index.css'
 import addtrlogo from '../Assets/addtrlogo.jpg'
-import ToggleButton from 'react-bootstrap/ToggleButton';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { addDebitTransaction } from '../services/allAPI';
 
 function Transaction({credit}) {
   const creditForm = credit?true:false
+
+  const [debitTransactions,setDebitTransactions] = useState({
+    debitAmount:"",
+    debitCategory:""
+
+  })
+  console.log(debitTransactions);
+
+  const handleAddDebit = async ()=>{
+    const {debitAmount,debitCategory}=debitTransactions
+    if(!debitAmount || !debitCategory){
+      alert('Please fill all the fields!')
+    }
+    else{
+      const response = await addDebitTransaction(debitTransactions)
+      console.log(response);
+
+      if(response.status>=200 && response.status<300){
+        alert('Your debit transaction added successfully.')
+      }
+      else{
+        alert('Something went wrong!, please try again later.')
+      }
+
+    }
+  }
+
   return (
     <div className='container'>
       <div className="row">
@@ -61,7 +86,7 @@ function Transaction({credit}) {
                 </div>
                 <div className="category mt-2 align-items-center d-flex flex-column w-75">
                     <p className='fw-semibold ms-0  w-100'>
-                      The money you have been receiving will be categorized into:
+                      The money you have been receiving will be categorised into:
                     </p>
                   <div className="category-input rounded-4 fs-4 mt-3  w-100">
                     <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter category'/>
@@ -78,18 +103,18 @@ function Transaction({credit}) {
               
               <div className='input-content align-items-center d-flex flex-column'>
                 <div className="amount-input rounded-4 fs-4 w-75">
-                  <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter amount'/>  
+                  <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter amount' onChange={(e)=>setDebitTransactions({...debitTransactions,debitAmount:e.target.value})}/>  
                 </div>
                 <div className="category mt-2 align-items-center d-flex flex-column w-75">
                     <p className='fw-semibold ms-0  w-100'>
                       Your spend will be categorised into:   
                     </p>
                   <div className="category-input rounded-4 fs-4 mt-3  w-100">
-                    <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter category'/>
+                    <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter category' onChange={(e)=>setDebitTransactions({...debitTransactions,debitCategory:e.target.value})}/>
                   </div>
                 </div>
                 <div className="add-button mt-3 text-center  w-75">
-                  <button className='btn text-light fw-bold fs-5 rounded-4 w-100'>ADD</button>
+                  <button className='btn text-light fw-bold fs-5 rounded-4 w-100' onClick={handleAddDebit}>ADD</button>
                 </div>
               </div>
               }
