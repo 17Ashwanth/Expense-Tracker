@@ -2,31 +2,33 @@ import React, { useState } from 'react'
 import '../index.css'
 import addtrlogo from '../Assets/addtrlogo.jpg'
 import { Link } from 'react-router-dom';
-import { addCreditTransaction, addDebitTransaction } from '../services/allAPI';
+import {addToHistory } from '../services/allAPI';
 
 function Transaction({credit}) {
   const creditForm = credit?true:false
 
   const [debitTransactions,setDebitTransactions] = useState({
-    debitAmount:"",
-    debitCategory:""
+    amount:"",
+    category:"",
+    mode:'debit'
 
   })
   console.log(debitTransactions);
 
   const [creditTransactions,setCreditTransactions] = useState({
-    creditAmount:"",
-    creditCategory:""
+    amount:"",
+    category:"",
+    mode:'credit'
   })
   console.log(creditTransactions);
 
   const handleAddDebit = async ()=>{
-    const {debitAmount,debitCategory}=debitTransactions
-    if(!debitAmount || !debitCategory){
+    const {amount,category}=debitTransactions
+    if(!amount || !category){
       alert('Please fill all the fields!') 
     }
     else{
-      const response = await addDebitTransaction(debitTransactions)
+      const response = await addToHistory(debitTransactions)
       console.log(response);
 
       if(response.status>=200 && response.status<300){
@@ -40,12 +42,12 @@ function Transaction({credit}) {
   }
 
   const handleAddCredit = async ()=>{
-    const {creditAmount,creditCategory}=creditTransactions
-    if(!creditAmount || !creditCategory){
+    const {amount,category}=creditTransactions
+    if(!amount || !category){
       alert('Please fill all the fields!')
     }
     else{
-      const response = await addCreditTransaction(creditTransactions)
+      const response = await addToHistory(creditTransactions)
       console.log(response);
 
       if(response.status>=200 && response.status<300){
@@ -107,14 +109,14 @@ function Transaction({credit}) {
               {creditForm?
                 <div className='input-content align-items-center d-flex flex-column'>
                 <div className="amount-input rounded-4 fs-4 w-75">
-                  <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter amount' onChange={(e)=>setCreditTransactions({...creditTransactions,creditAmount:e.target.value})}/>  
+                  <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter amount' onChange={(e)=>setCreditTransactions({...creditTransactions,amount:e.target.value})}/>  
                 </div>
                 <div className="category mt-2 align-items-center d-flex flex-column w-75">
                     <p className='fw-semibold ms-0  w-100'>
                       The money you have been receiving will be categorised into:
                     </p>
                   <div className="category-input rounded-4 fs-4 mt-3  w-100">
-                    <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter category' onChange={(e)=>setCreditTransactions({...creditTransactions,creditCategory:e.target.value})}/>
+                    <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter category' onChange={(e)=>setCreditTransactions({...creditTransactions,category:e.target.value})}/>
                   </div>
                 </div>
                 <div className="add-button mt-3 text-center  w-75">
@@ -128,14 +130,14 @@ function Transaction({credit}) {
               
               <div className='input-content align-items-center d-flex flex-column'>
                 <div className="amount-input rounded-4 fs-4 w-75">
-                  <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter amount' onChange={(e)=>setDebitTransactions({...debitTransactions,debitAmount:e.target.value})}/>  
+                  <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter amount' onChange={(e)=>setDebitTransactions({...debitTransactions,amount:e.target.value})}/>  
                 </div>
                 <div className="category mt-2 align-items-center d-flex flex-column w-75">
                     <p className='fw-semibold ms-0  w-100'>
                       Your spend will be categorised into:   
                     </p>
                   <div className="category-input rounded-4 fs-4 mt-3  w-100">
-                    <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter category' onChange={(e)=>setDebitTransactions({...debitTransactions,debitCategory:e.target.value})}/>
+                    <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter category' onChange={(e)=>setDebitTransactions({...debitTransactions,category:e.target.value})}/>
                   </div>
                 </div>
                 <div className="add-button mt-3 text-center  w-75">
