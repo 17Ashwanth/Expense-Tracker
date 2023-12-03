@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import IMG from '../Assets/v910-aew-061.jpg'
 import { Link } from 'react-router-dom'
-import { getHistory } from '../services/allAPI'
+import { deleteHistory, getHistory } from '../services/allAPI'
 
 
 function History() {
@@ -15,11 +15,19 @@ function History() {
     const getAllHistory = async()=>{
         const response = await getHistory();
         const {data} = response;
-        setHistory(data)
+        setHistory(data) 
     }
+  
     useEffect(()=>{
         getAllHistory()
     },[])
+
+    //function to remove history
+    const removeHis = async(id)=>{
+    await deleteHistory(id)
+    //to get the reaming history
+    getAllHistory()
+  }
 
     var totalExpense = history.filter((item)=>item.mode=="debit").reduce((sum, obj) => sum + parseInt(obj.amount), 0);
     var totalIncome = history.filter((item)=>item.mode=="credit").reduce((sum,obj)=>sum+parseInt(obj.amount),0);
@@ -59,11 +67,12 @@ function History() {
         <table className='table m-5 mb-5 container'>
         <thead>
           <tr>
-            <th >SL NO</th>
+{/*             <th >SL NO</th> */}
+            <th style={{textAlign:'center'}} >DATE</th>
+            <th >TIME</th>
             <th >CATEGORY</th>
             <th >AMOUNT</th>
             <th >MODE</th>
-            <th >DATE</th>
             <th >ACTION</th>
             
           </tr>
@@ -75,12 +84,13 @@ function History() {
                 history?.length>0?
                 history.map((item)=>(
                 <tr>
-                    <td>{item.id}</td>
+                    {/* <td>{item.id}</td> */}
+                    <td>{item.date}</td>
+                    <td>{item.time}</td>
                     <td>{item.category}</td>
                     <td>{item.amount}</td>
                     <td>{item.mode}</td>
-                    <td>26-11-23</td>
-                    <td><button><i style={{color:'red'}} class="fa-solid fa-trash"></i></button></td>
+                    <td><button className='ms-3' style={{backgroundColor:'black'}} onClick={()=>removeHis(item?.id)}><i class="fa-solid fa-trash text-white"></i></button></td>
                 </tr>
                     
                 ))

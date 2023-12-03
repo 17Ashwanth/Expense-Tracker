@@ -23,3 +23,7 @@ export const addToHistory = async(reqBody)=>{
 export const getHistory = async()=>{
     return await commonAPI("GET",`${serverURL}/history`)
 }
+
+export const deleteHistory = async(id)=>{
+    return await commonAPI('DELETE',`${serverURL}/history/${id}`,{})
+}

@@ -5,20 +5,31 @@ import { Link } from 'react-router-dom';
 import {addToHistory } from '../services/allAPI';
 
 function Transaction({credit}) {
+    const today = new Date()
+    let date = new Intl.DateTimeFormat('en-GB',{year:'numeric',month:'2-digit',day:'2-digit'}).format(today)
+    let time = new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(today)
+    console.log(date);
+    console.log(time);
   const creditForm = credit?true:false
 
   const [debitTransactions,setDebitTransactions] = useState({
     amount:"",
     category:"",
-    mode:'debit'
-
+    mode:'debit',
+    date : date,
+    time: time
+  
   })
   console.log(debitTransactions);
 
   const [creditTransactions,setCreditTransactions] = useState({
     amount:"",
     category:"",
-    mode:'credit'
+    mode:'credit',
+    date: date,
+    time: time
+
+
   })
   console.log(creditTransactions);
 
