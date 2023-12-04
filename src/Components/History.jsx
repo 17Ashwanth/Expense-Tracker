@@ -29,8 +29,14 @@ function History() {
     getAllHistory()
   }
 
+    const today = new Date()
+    var todayDate = new Intl.DateTimeFormat('en-GB',{year:'numeric',month:'2-digit',day:'2-digit'}).format(today)
+    
+
     var totalExpense = history.filter((item)=>item.mode=="debit").reduce((sum, obj) => sum + parseInt(obj.amount), 0);
     var totalIncome = history.filter((item)=>item.mode=="credit").reduce((sum,obj)=>sum+parseInt(obj.amount),0);
+    var todayExpense = history.filter((item)=>item.date==todayDate && item.mode=='debit').reduce((sum,obj)=>sum+parseInt(obj.amount),0)
+    var todayIncome = history.filter((item)=>item.date==todayDate && item.mode=='credit').reduce((sum,obj)=>sum+parseInt(obj.amount),0)
 
   return (
     <div>
@@ -51,7 +57,12 @@ function History() {
                     </div>
                     <div className="border w-75 mt-3">
                         <h3 className="text-white ms-2 p-3">
-                            Total Balance : {totalIncome-totalExpense}
+                            Total Expense Today : {todayExpense}
+                        </h3>
+                    </div>
+                    <div className="border w-75 mt-3">
+                        <h3 className="text-white ms-2 p-3">
+                            Total Income Today : {todayIncome}
                         </h3>
                     </div>
                     <div className='d-flex mt-3'>
