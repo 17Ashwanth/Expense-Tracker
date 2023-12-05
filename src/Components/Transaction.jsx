@@ -12,6 +12,8 @@ function Transaction({credit}) {
     console.log(time);
   const creditForm = credit?true:false
 
+  const [error,setError] = useState("");
+
   const [debitTransactions,setDebitTransactions] = useState({
     amount:"",
     category:"",
@@ -32,6 +34,27 @@ function Transaction({credit}) {
 
   })
   console.log(creditTransactions);
+
+  const getValidate = (e)=>{
+      const {value , name } = e.target;
+
+      if(/^(0|[1-9]\d*)$/.test(value)){
+        setError('')
+        
+        if(name=='credit'){
+          setCreditTransactions({...creditTransactions,amount:value})
+        }
+        else{
+          setDebitTransactions({...debitTransactions,amount:value})
+        }
+      }
+      else if(value==""){
+         setError("cannot be empty")
+      }
+      else{
+          setError("Only numbers are allowed")
+      }
+  }
 
   const handleAddDebit = async ()=>{
     const {amount,category}=debitTransactions
@@ -120,14 +143,17 @@ function Transaction({credit}) {
               {creditForm?
                 <div className='input-content align-items-center d-flex flex-column'>
                 <div className="amount-input rounded-4 fs-4 w-75">
-                  <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter amount' onChange={(e)=>setCreditTransactions({...creditTransactions,amount:e.target.value})}/>  
+                  <input name='credit' className='ps-3 p-2 rounded-4' type="text" placeholder='Enter amount' 
+                  onChange={(e)=>getValidate(e)}/>
                 </div>
                 <div className="category mt-2 align-items-center d-flex flex-column w-75">
+                    <p className='w-100 ms-0 fw-semibold text-danger'>{error}</p>
                     <p className='fw-semibold ms-0  w-100'>
                       The money you have been receiving will be categorised into:
                     </p>
                   <div className="category-input rounded-4 fs-4 mt-3  w-100">
-                    <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter category' onChange={(e)=>setCreditTransactions({...creditTransactions,category:e.target.value})}/>
+                    <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter category' 
+                    onChange={(e)=>setCreditTransactions({...creditTransactions,category:e.target.value})}/>
                   </div>
                 </div>
                 <div className="add-button mt-3 text-center  w-75">
@@ -141,9 +167,10 @@ function Transaction({credit}) {
               
               <div className='input-content align-items-center d-flex flex-column'>
                 <div className="amount-input rounded-4 fs-4 w-75">
-                  <input className='ps-3 p-2 rounded-4' type="text" placeholder='Enter amount' onChange={(e)=>setDebitTransactions({...debitTransactions,amount:e.target.value})}/>  
+                  <input name='debit' className='ps-3 p-2 rounded-4' type="text" placeholder='Enter amount' onChange={(e)=>getValidate(e)}/>  
                 </div>
                 <div className="category mt-2 align-items-center d-flex flex-column w-75">
+                    <p className='w-100 ms-0 fw-semibold text-danger'>{error}</p>
                     <p className='fw-semibold ms-0  w-100'>
                       Your spend will be categorised into:   
                     </p>
