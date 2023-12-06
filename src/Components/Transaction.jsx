@@ -114,7 +114,7 @@ function Transaction({credit}) {
                 <div className=''>
                   <div className=' mb-3 text-center'>
                     <Link to={'/transaction'}>
-                      <button className=' p-2 px-4  text-white rounded-start-5 rounded-end-0 ' style={{backgroundColor:'#091130',borderColor:'#091130'}}>
+                      <button className='  px-4  text-white rounded-start-5 rounded-end-0 ' style={{backgroundColor:'#091130',borderColor:'#091130',padding:'9.8px'}}>
                         Debit
                       </button>
                     </Link>
@@ -133,7 +133,7 @@ function Transaction({credit}) {
                     </button>
                   </Link>
                   <Link to={'/credit'}>
-                    <button className=' p-2 px-4   text-white rounded-end-5 rounded-start-0 ' style={{backgroundColor:'#091130',borderColor:'#091130'}}>
+                    <button className='  px-4   text-white rounded-end-5 rounded-start-0 ' style={{backgroundColor:'#091130',borderColor:'#091130',padding:'9.8px'}}>
                       Credit
                     </button>
                   </Link>

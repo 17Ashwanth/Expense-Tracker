@@ -66,4 +66,26 @@ body{
     color: white;
 }
 
+.home-header,.home-definition{
+    color: #091130;
+}
 
+.getstart-btn{
+    background-color: #091130;
+    border: 1px solid #044191;
+    color: #ffffff;
+    transition: background-color .6s;
+}
+.getstart-btn:hover{
+    background-color: #044191;
+    border: 1px solid #091130;
+    color: white;
+}
+
+.remove-btn i{
+    color:black;
+    transition:color .6s;
+}
+.remove-btn:hover i{
+    color:red;
+}

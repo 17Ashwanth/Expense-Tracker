@@ -3,6 +3,8 @@ import '../index.css'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import mainlogo from '../Assets/logo1.jpg';
+
 
 
 function Header() {
@@ -10,7 +12,7 @@ function Header() {
     <div className='header-body text-decoration-none'>
          <Navbar expand="lg">
       <Container>
-      <img style={{width:'30px',marginRight:'20px'}} src="https://cdn-icons-png.flaticon.com/128/781/781831.png" alt="" /> 
+      <img style={{width:'30px'}} src={mainlogo} alt="" className='rounded-1 ms-2'/> 
         <Navbar.Brand className='text-white' href={'/'}>Spend Wise Hub</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
