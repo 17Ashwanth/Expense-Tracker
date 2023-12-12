@@ -4,6 +4,8 @@ import addtrlogo from '../Assets/addtrlogo.jpg'
 import { Link } from 'react-router-dom';
 import {addToHistory } from '../services/allAPI';
 
+
+
 function Transaction({credit}) {
     const today = new Date()
     let date = new Intl.DateTimeFormat('en-GB',{year:'numeric',month:'2-digit',day:'2-digit'}).format(today)
@@ -187,7 +189,7 @@ function Transaction({credit}) {
             </div>  
         </div>
       </div>
-    </div>
+     </div>
   )
 }
 
