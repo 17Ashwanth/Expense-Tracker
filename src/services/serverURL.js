@@ -1,1 +1,1 @@
-export const serverURL = "https://expense-tracker-backend-cocw.onrender.com"
+export const serverURL = "https://expense-tracker-final-backend.onrender.com"
